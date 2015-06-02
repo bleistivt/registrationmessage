@@ -24,7 +24,7 @@ class registrationMessagePlugin extends Gdn_Plugin {
         $model->save([
             'Body' => C('registrationMessage.message'),
             'Format' => 'Html',
-            'InsertUserID' => Gdn::UserModel()->getSystemUserID(),
+            'InsertUserID' => C('registrationMessage.user', Gdn::UserModel()->getSystemUserID()),
             'RecipientUserID' => array($sender->UserModel->EventArguments['User']->UserID);
         ], $messageModel);
     }
