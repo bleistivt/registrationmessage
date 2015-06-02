@@ -15,18 +15,19 @@ $PluginInfo['registrationMessage'] = array(
 class registrationMessagePlugin extends Gdn_Plugin {
 
     public function entryController_registrationSuccessful_handler($sender) {
-        if (!C('EnabledApplications.Conversations')) {
+        if (!c('EnabledApplications.Conversations')) {
             return;
         }
 
         $model = new ConversationModel();
         $messageModel = new ConversationMessageModel();
         $model->save([
-            'Body' => C('registrationMessage.message'),
+            'Body' => c('registrationMessage.message'),
             'Format' => 'Html',
-            'InsertUserID' => C('registrationMessage.user', Gdn::UserModel()->getSystemUserID()),
+            'InsertUserID' => c('registrationMessage.user', Gdn::UserModel()->getSystemUserID()),
             'RecipientUserID' => array($sender->UserModel->EventArguments['User']->UserID);
         ], $messageModel);
+        // Notifications will work once https://github.com/vanilla/vanilla/pull/2793 is resolved.
     }
 
     public function settingsController_registrationMessage_create($sender) {
@@ -56,7 +57,7 @@ class registrationMessagePlugin extends Gdn_Plugin {
     }
 
     public function setup() {
-        if (!C('registrationMessage.message')) {
+        if (!c('registrationMessage.message')) {
             saveToConfig('registrationMessage.message', 'Welcome to the community!');
         }
     }
