@@ -2,7 +2,7 @@
 
 $PluginInfo['registrationMessage'] = array(
     'Name' => 'Registration Message',
-    'Description' => 'Sends a configurable message users immediately after registration.',
+    'Description' => 'Sends a configurable message to users immediately after registration.',
     'Version' => '0.1',
     'MobileFriendly' => true,
     'SettingsUrl' => 'settings/registrationmessage',
