@@ -1,6 +1,6 @@
 <?php if (!defined('APPLICATION')) exit();
 
-$PluginInfo['registrationmessage'] = [
+$PluginInfo['registrationmessage'] = array(
     'Name' => 'Registration Message',
     'Description' => 'Sends a configurable message to users immediately after registration.',
     'Version' => '0.1',
@@ -10,7 +10,7 @@ $PluginInfo['registrationmessage'] = [
     'Author' => 'Bleistivt',
     'AuthorUrl' => 'http://bleistivt.net',
     'License' => 'GNU GPL2'
-];
+);
 
 class RegistrationMessagePlugin extends Gdn_Plugin {
 
