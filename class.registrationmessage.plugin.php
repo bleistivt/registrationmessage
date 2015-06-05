@@ -20,9 +20,9 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
         }
 
         (new ConversationModel())->save([
-            'Body' => c('registrationMessage.message'),
+            'Body' => c('RegistrationMessage.Message'),
             'Format' => 'Html',
-            'InsertUserID' => c('registrationMessage.user', Gdn::UserModel()->getSystemUserID()),
+            'InsertUserID' => c('RegistrationMessage.User', Gdn::UserModel()->getSystemUserID()),
             'RecipientUserID' => array($sender->UserModel->EventArguments['User']->UserID);
         ], new ConversationMessageModel());
     }
@@ -33,7 +33,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
 
         $conf = new ConfigurationModule($sender);
         $conf->initialize(array(
-            'registrationMessage.message' => array(
+            'RegistrationMessage.Message' => array(
                 'Control' => 'textbox',
                 'LabelCode' => 'Write a message to send users on registration.)',
                 'Options' => array('MultiLine' => true)
@@ -54,8 +54,8 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
     }
 
     public function setup() {
-        if (!c('registrationMessage.message')) {
-            saveToConfig('registrationMessage.message', 'Welcome to the community!');
+        if (!c('RegistrationMessage.Message')) {
+            saveToConfig('RegistrationMessage.Message', 'Welcome to the community!');
         }
     }
 
