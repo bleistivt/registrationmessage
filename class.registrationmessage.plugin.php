@@ -1,6 +1,6 @@
 <?php if (!defined('APPLICATION')) exit();
 
-$PluginInfo['registrationMessage'] = array(
+$PluginInfo['registrationmessage'] = [
     'Name' => 'Registration Message',
     'Description' => 'Sends a configurable message to users immediately after registration.',
     'Version' => '0.1',
@@ -10,24 +10,21 @@ $PluginInfo['registrationMessage'] = array(
     'Author' => 'Bleistivt',
     'AuthorUrl' => 'http://bleistivt.net',
     'License' => 'GNU GPL2'
-);
+];
 
-class registrationMessagePlugin extends Gdn_Plugin {
+class RegistrationMessagePlugin extends Gdn_Plugin {
 
     public function entryController_registrationSuccessful_handler($sender) {
         if (!c('EnabledApplications.Conversations')) {
             return;
         }
 
-        $model = new ConversationModel();
-        $messageModel = new ConversationMessageModel();
-        $model->save([
+        (new ConversationModel())->save([
             'Body' => c('registrationMessage.message'),
             'Format' => 'Html',
             'InsertUserID' => c('registrationMessage.user', Gdn::UserModel()->getSystemUserID()),
             'RecipientUserID' => array($sender->UserModel->EventArguments['User']->UserID);
-        ], $messageModel);
-        // Notifications will work once https://github.com/vanilla/vanilla/pull/2793 is resolved.
+        ], new ConversationMessageModel());
     }
 
     public function settingsController_registrationMessage_create($sender) {
