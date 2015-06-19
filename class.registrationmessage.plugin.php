@@ -4,6 +4,7 @@ $PluginInfo['registrationmessage'] = array(
     'Name' => 'Registration Message',
     'Description' => 'Sends a configurable message to users immediately after registration.',
     'Version' => '0.1',
+    'RequiredApplications' => array('Vanilla' => '2.2'),
     'MobileFriendly' => true,
     'SettingsUrl' => 'settings/registrationmessage',
     'SettingsPermission' => 'Garden.Settings.Manage',
