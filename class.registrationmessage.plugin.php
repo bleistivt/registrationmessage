@@ -1,17 +1,17 @@
 <?php
 
-$PluginInfo['registrationmessage'] = array(
+$PluginInfo['registrationmessage'] = [
     'Name' => 'Registration Message',
     'Description' => 'Sends a configurable message to users immediately after registration.',
     'Version' => '0.1',
-    'RequiredApplications' => array('Vanilla' => '2.2'),
+    'RequiredApplications' => ['Vanilla' => '2.2'],
     'MobileFriendly' => true,
     'SettingsUrl' => 'settings/registrationmessage',
     'SettingsPermission' => 'Garden.Settings.Manage',
     'Author' => 'Bleistivt',
     'AuthorUrl' => 'http://bleistivt.net',
     'License' => 'GNU GPL2'
-);
+];
 
 class RegistrationMessagePlugin extends Gdn_Plugin {
 
@@ -24,7 +24,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             'Body' => c('RegistrationMessage.Message'),
             'Format' => 'Html',
             'InsertUserID' => c('RegistrationMessage.User', Gdn::UserModel()->getSystemUserID()),
-            'RecipientUserID' => array($sender->UserModel->EventArguments['User']->UserID);
+            'RecipientUserID' => [$sender->UserModel->EventArguments['User']->UserID];
         ], new ConversationMessageModel());
     }
 
@@ -33,13 +33,13 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
         $sender->addSideMenu('settings/registrationmessage');
 
         $conf = new ConfigurationModule($sender);
-        $conf->initialize(array(
-            'RegistrationMessage.Message' => array(
+        $conf->initialize([
+            'RegistrationMessage.Message' => [
                 'Control' => 'textbox',
                 'LabelCode' => 'Write a message to send users on registration.)',
-                'Options' => array('MultiLine' => true)
-            )
-        ));
+                'Options' => ['MultiLine' => true]
+            ]
+        ]);
 
         $sender->setData('Title', 'Registration Message');
         $conf->renderAll();
