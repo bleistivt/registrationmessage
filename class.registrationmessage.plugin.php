@@ -36,7 +36,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
         $conf->initialize([
             'RegistrationMessage.Message' => [
                 'Control' => 'textbox',
-                'LabelCode' => 'Write a message to send users on registration.)',
+                'LabelCode' => 'Write a message to send to users on registration.',
                 'Options' => ['MultiLine' => true]
             ]
         ]);
