@@ -23,7 +23,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
         (new ConversationModel())->save([
             'Body' => c('RegistrationMessage.Message'),
             'Format' => 'Html',
-            'InsertUserID' => c('RegistrationMessage.User', Gdn::UserModel()->getSystemUserID()),
+            'InsertUserID' => c('RegistrationMessage.User', Gdn::userModel()->getSystemUserID()),
             'RecipientUserID' => [$sender->UserModel->EventArguments['User']->UserID];
         ], new ConversationMessageModel());
     }
