@@ -41,7 +41,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             ]
         ]);
 
-        $sender->setData('Title', 'Registration Message');
+        $sender->title('Registration Message');
         $conf->renderAll();
     }
 
