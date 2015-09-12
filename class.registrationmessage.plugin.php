@@ -28,6 +28,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
         ], new ConversationMessageModel());
     }
 
+
     public function settingsController_registrationMessage_create($sender) {
         $sender->permission('Garden.Settings.Manage');
         $sender->addSideMenu('settings/registrationmessage');
@@ -45,6 +46,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
         $conf->renderAll();
     }
 
+
     public function base_getAppSettingsMenuItems_handler($sender, &$args) {
         $args['SideMenu']->addLink(
           'Users',
@@ -53,6 +55,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
           'Garden.Settings.Manage'
         );
     }
+
 
     public function setup() {
         if (!c('RegistrationMessage.Message')) {
