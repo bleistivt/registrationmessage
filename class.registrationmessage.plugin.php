@@ -3,7 +3,7 @@
 $PluginInfo['registrationmessage'] = [
     'Name' => 'Registration Message',
     'Description' => 'Sends a configurable message to users immediately after registration.',
-    'Version' => '0.1',
+    'Version' => '0.2',
     'RequiredApplications' => ['Vanilla' => '2.2'],
     'MobileFriendly' => true,
     'SettingsUrl' => 'settings/registrationmessage',
@@ -15,16 +15,18 @@ $PluginInfo['registrationmessage'] = [
 
 class RegistrationMessagePlugin extends Gdn_Plugin {
 
-    public function entryController_registrationSuccessful_handler($sender) {
+    public function userModel_afterRegister_handler($sender, $args) {
         if (!c('EnabledApplications.Conversations')) {
             return;
         }
 
+        $name = val('Name', Gdn::userModel()->getID($args['UserID']));
+
         (new ConversationModel())->save([
-            'Body' => c('RegistrationMessage.Message'),
+            'Body' => str_replace('%%NAME%%', $name, c('RegistrationMessage.Message')),
             'Format' => 'Html',
             'InsertUserID' => c('RegistrationMessage.User', Gdn::userModel()->getSystemUserID()),
-            'RecipientUserID' => [$sender->UserModel->EventArguments['User']->UserID];
+            'RecipientUserID' => [$args['UserID']]
         ], new ConversationMessageModel());
     }
 
@@ -37,7 +39,8 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
         $conf->initialize([
             'RegistrationMessage.Message' => [
                 'Control' => 'textbox',
-                'LabelCode' => 'Write a message to send to users on registration.',
+                'LabelCode' => 'Write a message to send to newly registered users.',
+                'Description' => 'HTML is allowed.  You can use <code>%%NAME%%</code> as a placeholder for the user\'s name.',
                 'Options' => ['MultiLine' => true]
             ]
         ]);
@@ -59,7 +62,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
 
     public function setup() {
         if (!c('RegistrationMessage.Message')) {
-            saveToConfig('RegistrationMessage.Message', 'Welcome to the community!');
+            saveToConfig('RegistrationMessage.Message', 'Hi %%NAME%%, welcome to the community!');
         }
     }
 
