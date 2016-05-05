@@ -40,7 +40,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             'RegistrationMessage.Message' => [
                 'Control' => 'textbox',
                 'LabelCode' => 'Write a message to send to newly registered users.',
-                'Description' => 'HTML is allowed.  You can use <code>%%NAME%%</code> as a placeholder for the user\'s name.',
+                'Description' => 'HTML is allowed. You can use <code>%%NAME%%</code> as a placeholder for the user\'s name.',
                 'Options' => ['MultiLine' => true]
             ]
         ]);
