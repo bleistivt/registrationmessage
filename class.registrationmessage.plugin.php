@@ -4,13 +4,13 @@ $PluginInfo['registrationmessage'] = [
     'Name' => 'Registration Message',
     'Description' => 'Sends a configurable message to users immediately after registration.',
     'Version' => '0.3',
-    'RequiredApplications' => ['Vanilla' => '2.2'],
     'MobileFriendly' => true,
     'SettingsUrl' => 'settings/registrationmessage',
     'SettingsPermission' => 'Garden.Settings.Manage',
     'Author' => 'Bleistivt',
     'AuthorUrl' => 'http://bleistivt.net',
-    'License' => 'GNU GPL2'
+    'License' => 'GNU GPL2',
+    'GitHub' => 'bleistivt/registrationmessage'
 ];
 
 class RegistrationMessagePlugin extends Gdn_Plugin {
