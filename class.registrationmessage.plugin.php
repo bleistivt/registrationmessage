@@ -3,7 +3,7 @@
 $PluginInfo['registrationmessage'] = [
     'Name' => 'Registration Message',
     'Description' => 'Sends a configurable message to users immediately after registration.',
-    'Version' => '0.2',
+    'Version' => '0.3',
     'RequiredApplications' => ['Vanilla' => '2.2'],
     'MobileFriendly' => true,
     'SettingsUrl' => 'settings/registrationmessage',
@@ -27,7 +27,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             'Format' => 'Html',
             'InsertUserID' => c('RegistrationMessage.User', Gdn::userModel()->getSystemUserID()),
             'RecipientUserID' => [$args['UserID']]
-        ], new ConversationMessageModel());
+        ]);
     }
 
 
@@ -40,7 +40,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             'RegistrationMessage.Message' => [
                 'Control' => 'textbox',
                 'LabelCode' => 'Write a message to send to newly registered users.',
-                'Description' => 'HTML is allowed. You can use <code>%%NAME%%</code> as a placeholder for the user\'s name.',
+                'Description' => 'HTML is allowed.  You can use <code>%%NAME%%</code> as a placeholder for the user\'s name.',
                 'Options' => ['MultiLine' => true]
             ]
         ]);
@@ -50,7 +50,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
     }
 
 
-    public function base_getAppSettingsMenuItems_handler($sender, &$args) {
+    public function base_getAppSettingsMenuItems_handler($sender, $args) {
         $args['SideMenu']->addLink(
           'Users',
           'Registration Message',
