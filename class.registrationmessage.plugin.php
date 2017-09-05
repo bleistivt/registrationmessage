@@ -1,18 +1,5 @@
 <?php
 
-$PluginInfo['registrationmessage'] = [
-    'Name' => 'Registration Message',
-    'Description' => 'Sends a configurable message to users immediately after registration.',
-    'Version' => '0.3',
-    'MobileFriendly' => true,
-    'SettingsUrl' => 'settings/registrationmessage',
-    'SettingsPermission' => 'Garden.Settings.Manage',
-    'Author' => 'Bleistivt',
-    'AuthorUrl' => 'http://bleistivt.net',
-    'License' => 'GNU GPL2',
-    'GitHub' => 'bleistivt/registrationmessage'
-];
-
 class RegistrationMessagePlugin extends Gdn_Plugin {
 
     public function userModel_afterRegister_handler($sender, $args) {
@@ -33,7 +20,6 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
 
     public function settingsController_registrationMessage_create($sender) {
         $sender->permission('Garden.Settings.Manage');
-        $sender->addSideMenu('settings/registrationmessage');
 
         $conf = new ConfigurationModule($sender);
         $conf->initialize([
@@ -47,16 +33,6 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
 
         $sender->title('Registration Message');
         $conf->renderAll();
-    }
-
-
-    public function base_getAppSettingsMenuItems_handler($sender, $args) {
-        $args['SideMenu']->addLink(
-          'Users',
-          'Registration Message',
-          'settings/registrationmessage',
-          'Garden.Settings.Manage'
-        );
     }
 
 
