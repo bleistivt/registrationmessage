@@ -37,9 +37,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
 
 
     public function setup() {
-        if (!c('RegistrationMessage.Message')) {
-            saveToConfig('RegistrationMessage.Message', 'Hi %%NAME%%, welcome to the community!');
-        }
+        touchConfig('RegistrationMessage.Message', 'Hi %%NAME%%, welcome to the community!');
     }
 
 }
