@@ -7,7 +7,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             return;
         }
 
-        $name = val('Name', Gdn::userModel()->getID($args['UserID']));
+        $name = Gdn::userModel()->getID($args['UserID'])->Name;
 
         (new ConversationModel())->save([
             'Body' => str_replace('%%NAME%%', $name, c('RegistrationMessage.Message')),
