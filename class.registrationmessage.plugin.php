@@ -14,6 +14,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             'Format' => 'Html',
             'InsertUserID' => c('RegistrationMessage.User', Gdn::userModel()->getSystemUserID()),
             'RecipientUserID' => [$args['UserID']],
+            // This should not be needed. See https://open.vanillaforums.com/discussion/37984
             'UpdateUserID' => Gdn::session()->UserID
         ]);
     }
