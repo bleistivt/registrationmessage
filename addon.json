@@ -1,7 +1,7 @@
 {
     "name": "Registration Message",
     "description": "Sends a configurable message to users immediately after registration.",
-    "version": "0.4",
+    "version": "0.5",
     "mobileFriendly": true,
     "settingsUrl": "settings/registrationmessage",
     "settingsPermission": "Garden.Settings.Manage",
