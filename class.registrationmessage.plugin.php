@@ -13,7 +13,8 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
             'Body' => str_replace('%%NAME%%', $name, c('RegistrationMessage.Message')),
             'Format' => 'Html',
             'InsertUserID' => c('RegistrationMessage.User', Gdn::userModel()->getSystemUserID()),
-            'RecipientUserID' => [$args['UserID']]
+            'RecipientUserID' => [$args['UserID']],
+            'UpdateUserID' => Gdn::session()->UserID
         ]);
     }
 
