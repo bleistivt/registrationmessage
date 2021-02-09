@@ -3,16 +3,16 @@
 class RegistrationMessagePlugin extends Gdn_Plugin {
 
     public function userModel_afterRegister_handler($sender, $args) {
-        if (!c('EnabledApplications.Conversations')) {
+        if (!Gdn::config('EnabledApplications.Conversations')) {
             return;
         }
 
         $name = Gdn::userModel()->getID($args['UserID'])->Name;
 
         (new ConversationModel())->save([
-            'Body' => str_replace('%%NAME%%', $name, c('RegistrationMessage.Message')),
+            'Body' => str_replace('%%NAME%%', $name, Gdn::config('RegistrationMessage.Message')),
             'Format' => 'Html',
-            'InsertUserID' => c('RegistrationMessage.User', Gdn::userModel()->getSystemUserID()),
+            'InsertUserID' => Gdn::config('RegistrationMessage.User', Gdn::userModel()->getSystemUserID()),
             'RecipientUserID' => [$args['UserID']],
             // This should not be needed. See https://open.vanillaforums.com/discussion/37984
             'UpdateUserID' => Gdn::session()->UserID
