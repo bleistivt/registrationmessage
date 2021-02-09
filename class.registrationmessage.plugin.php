@@ -39,7 +39,7 @@ class RegistrationMessagePlugin extends Gdn_Plugin {
 
 
     public function setup() {
-        touchConfig('RegistrationMessage.Message', 'Hi %%NAME%%, welcome to the community!');
+        Gdn::config()->touch('RegistrationMessage.Message', 'Hi %%NAME%%, welcome to the community!');
     }
 
 }
